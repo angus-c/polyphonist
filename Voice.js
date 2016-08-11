@@ -1,17 +1,17 @@
 var Speaker = require("speaker");
 var AudioContext = require("web-audio-engine").StreamAudioContext;
+var context = new AudioContext();
 
 module.exports = Voice;
  
 function Voice() {
-  this.context = new AudioContext();
-  this.osc = this.context.createOscillator();
-  this.amp = this.context.createGain();
+  this.osc = context.createOscillator();
+  this.amp = context.createGain();
   this.osc.connect(this.amp);
   this.osc.type = "square";
-  this.amp.connect(this.context.destination);
-  this.context.pipe(new Speaker());
-  this.context.resume();
+  this.amp.connect(context.destination);
+  context.pipe(new Speaker());
+  context.resume();
   this.osc.onended = function() {
     // process.exit(0);
   };

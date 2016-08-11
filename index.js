@@ -1,6 +1,7 @@
 var Voice = require('./Voice');
 var numberOfTracks = 4;
-var notes = require('./notes');
+var interval = 200;
+var pitches = require('./notes');
 
 var voices = [];
 var i = numberOfTracks;
@@ -8,14 +9,23 @@ while (i--) {
   voices.push(new Voice);
 }
 
-var scale1 = [notes.c3, notes.d3, notes.e3, notes.f3, notes.g3, notes.a3, notes.b3, notes.c4];
-var scale2 = [notes.c4, notes.d4, notes.e4, notes.f4, notes.g4, notes.a4, notes.b4, notes.c5];
+var score = [
+  'c3.c5', 'd3.b4', 'e3.a4', 'f3.g4', 'g3.f4', 'a3.e4', 'b3.d4', 'c4.c4'
+];
+var notes;
+
 i = 0;
 var int = setInterval(function() {
-  voices[0].play(scale1[i], 0.1);
-  voices[1].play(scale2[i], 0.1);
-  i++;
-}, 1000);
+  if (i > score.length - 1) {
+    global.clearInterval(int);
+    voices[0].rest();
+    voices[1].rest();
+  } else {
+    notes = score[i++].split('.');
+    voices[0].play(pitches[notes[0]], 0.1);
+    voices[1].play(pitches[notes[1]], 0.1);
+  }
+}, interval);
 
 
 //voices[1].play(notes.e0, 0.1);
