@@ -1,10 +1,10 @@
 {
   "name": "polyphonist",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "WIP - use the web audio api to compose and playback polyphonically",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "play": "node index"
   },
   "keywords": [
     "web-audio-api",
@@ -21,8 +21,5 @@
   "dependencies": {
     "speaker": "^0.3.0",
     "web-audio-engine": "^0.9.2"
-  },
-  "scripts": {
-    "play": "node index"
   }
 }
