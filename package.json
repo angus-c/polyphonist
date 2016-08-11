@@ -1,6 +1,6 @@
 {
   "name": "polyphonist",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "WIP - use the web audio api to compose and playback polyphonically",
   "main": "index.js",
   "scripts": {
