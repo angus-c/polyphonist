@@ -1,7 +1,7 @@
 var Voice = require('./Voice');
 var numberOfTracks = 4;
 var interval = 200;
-var pitches = require('./notes');
+var pitches = require('./pitches');
 
 var voices = [];
 var i = numberOfTracks;
