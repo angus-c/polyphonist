@@ -12,6 +12,10 @@
     "audio",
     "polyphony"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angus-c/polyphonist.git"
+  },
   "author": "Angus Croll",
   "license": "MIT",
   "dependencies": {
