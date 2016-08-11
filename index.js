@@ -2,6 +2,7 @@ var Voice = require('./Voice');
 var numberOfTracks = 4;
 var interval = 200;
 var pitches = require('./pitches');
+var score = require('./scores/bachGMinorFugue');
 
 var voices = [];
 var i = numberOfTracks;
@@ -9,21 +10,27 @@ while (i--) {
   voices.push(new Voice);
 }
 
-var score = [
-  'c3.c5', 'd3.b4', 'e3.a4', 'f3.g4', 'g3.f4', 'a3.e4', 'b3.d4', 'c4.c4'
-];
 var notes;
 
 i = 0;
 var int = setInterval(function() {
   if (i > score.length - 1) {
     global.clearInterval(int);
-    voices[0].rest();
-    voices[1].rest();
+    for (var j = 0; j < numberOfTracks; j++) {
+      voices[j].rest();
+    }
+    process.exit(0);
   } else {
     notes = score[i++].split('.');
-    voices[0].play(pitches[notes[0]], 0.1);
-    voices[1].play(pitches[notes[1]], 0.1);
+    for (var j = 0; j < numberOfTracks; j++) {
+      var note = notes[j] && notes[j].trim();
+      // console.log(note);
+      if (note) {
+        voices[j].play(pitches[note], 0.1);
+      } else {
+        voices[j].rest();
+      }
+    }
   }
 }, interval);
 
