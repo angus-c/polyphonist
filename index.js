@@ -10,7 +10,9 @@ while (i--) {
   voices.push(new Voice);
 }
 
-module.exports = function playScore(score) {
+module.exports = playScore;
+
+function playScore(score) {
   score = score || defaultScore;
   var notes, i = 0;
   var int = setInterval(function() {
@@ -22,15 +24,17 @@ module.exports = function playScore(score) {
       process.exit(0);
     } else {
       notes = score[i++].split('.');
+      console.log(notes)
       for (var j = 0; j < numberOfTracks; j++) {
         var note = notes[j] && notes[j].trim();
-        // console.log(note);
         if (note) {
           voices[j].play(pitches[note], 0.1);
-        } else {
+        } else {;
           voices[j].rest();
         }
       }
     }
   }, interval);
 }
+
+playScore();

@@ -18,12 +18,11 @@ function Voice() {
 }
 
 Voice.prototype.play = function(pitch, volume) {
-  this.osc.frequency.setValueAtTime(pitch);
+  this.amp.gain.value = volume;
+  this.osc.frequency.value = pitch;
   this.osc.start(0);
-  this.amp.gain.setValueAtTime(volume)
 }
 
 Voice.prototype.rest = function() {
-  this.osc.stop(0);
-  this.amp.gain.setValueAtTime(0)
+  this.amp.gain.value = 0;
 }
